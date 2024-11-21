@@ -1,0 +1,17 @@
+.square{
+    width:80px;
+    height: 80px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+}
+.board-main
+{
+    display: flex;
+    flex-direction: column;
+}
+.board-row
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

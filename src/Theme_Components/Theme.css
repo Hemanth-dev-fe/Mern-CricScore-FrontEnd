@@ -1,0 +1,50 @@
+.Themespace input 
+ {
+     display: none; /* Hide the default checkbox */
+ }
+
+.Themespace label{
+    width:45px;
+    height: 20px;
+    display: inline-block;
+    position: relative;
+}
+.Themespace .splider
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #ccc;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.Themespace
+{
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+}
+.Themespace input:checked + .splider
+{
+    background-color: aqua;
+    
+}
+.Themespace .splider::before
+{
+    position: absolute;
+    bottom:1px;
+    left: 1px;
+    width:18px;
+    height: 18px;
+    background-color: #fff;
+    content: "";
+    border-radius: 50%;
+    transition: 0.4s;
+}
+.Themespace input:checked + .splider::before
+{
+    transform: translateX(26px);
+    transition: 0.4s;
+}
