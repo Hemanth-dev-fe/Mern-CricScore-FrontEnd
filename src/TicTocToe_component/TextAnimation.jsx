@@ -63,6 +63,33 @@ function TextAnimation() {
         return <Game player1={player1Name} player2={player2Name} cancel={handleCancelButton} />; // Render the game component with set names
     }
 
+     
+        // Ensure event is defined The onChange event handler in the first snippet automatically receives the event parameter,
+        // which is essential for accessing the input value.
+
+        /* Direct Function Reference (First Snippet):
+
+onChange={handleInputChange}
+
+Here, handleInputChange is passed directly as the event handler function. This allows the TextField component to automatically pass 
+the event object to the function when an input change occurs.
+
+Arrow Function (Second Snippet):
+
+onChange={() => { handleInputChange(); }}
+
+This creates a new arrow function that calls handleInputChange without any parameters. 
+Since handleInputChange expects an event parameter, this will cause an error because event is not passed. */
+const handleInputChange1 = (event) => {
+        const input = event.target.value; 
+                const capitalizedInput = input.charAt(0).toUpperCase() + input.slice(1); 
+                setPlayer1(capitalizedInput);
+               };
+                const handleInputChange2 = (event) => {
+                    const input = event.target.value; 
+                            const capitalizedInput = input.charAt(0).toUpperCase() + input.slice(1); 
+                            
+                            setPlayer2(capitalizedInput); };
     return (
         <>
             <h4
@@ -92,7 +119,7 @@ function TextAnimation() {
                             label="Your Name"
                             fullWidth
                             value={player1}
-                            onChange={(e) => setPlayer1(e.target.value)}
+                            onChange={handleInputChange1}
                             variant="standard"
                             margin="dense"
                         />
@@ -100,7 +127,7 @@ function TextAnimation() {
                             label="Another Player Name"
                             fullWidth
                             value={player2}
-                            onChange={(e) => setPlayer2(e.target.value)}
+                            onChange={handleInputChange2}
                             variant="standard"
                             margin="dense"
                         />
