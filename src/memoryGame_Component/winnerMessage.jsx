@@ -23,9 +23,18 @@ function WinnerMessage() {
 
     return (
         <>
-            <h1 style={{ textAlign: "center", fontSize: "60px",color:bgcolor }}>
-                Congratulations: {winner}
-            </h1>
+            <div
+                style={{
+                    
+                    margin: "20px",
+                    fontSize: "5vw",
+                    color: bgcolor,
+                    textAlign:"center",
+                    padding:"8px"
+                }}>
+                <p>Congratulations:</p>
+                 <p>{winner}</p>
+            </div>
         </>
     );
 }

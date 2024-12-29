@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateCurrentText } from "../reducers/textanimation_tictoctoe_reducer";
 import { setPlayersName } from "../reducers/TicTocToereducer";
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@mui/material";
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Snackbar, TextField } from "@mui/material";
 import Game from "./game";
 
 function TextAnimation() {
@@ -14,12 +14,23 @@ function TextAnimation() {
     const [showGame, setShowGame] = useState(false);
     const [player1, setPlayer1] = useState("");
     const [player2, setPlayer2] = useState("");
-    const [player1Name, setPlayer1Name] = useState("A");
-    const [player2Name, setPlayer2Name] = useState("B");
+    const [player1Name, setPlayer1Name] = useState("");
+    const [player2Name, setPlayer2Name] = useState("");
+    const [snackbar, setSnackbar] = useState(false);
     const index = useRef(0);
 
+    const handleSnackBarOpen = () => {
+        setSnackbar(true);
+        console.log("Snackbar state set to true");
+    };
+
+    const handleSnackBarClose = () => {
+        setSnackbar(false);
+        console.log("Snackbar state set to false");
+    };
+
     useEffect(() => {
-        if (!text) return; // If no text, then interval stop
+        if (!text) return;
         const interval = setInterval(() => {
             if (index.current < text.length) {
                 let updatedText = currentText + text[index.current];
@@ -45,51 +56,39 @@ function TextAnimation() {
     };
 
     const handleStartButton = () => {
-        // Use default names "A" and "B" if no names are entered
         const name1 = player1.trim() ? player1 : "A";
         const name2 = player2.trim() ? player2 : "B";
 
-        // Update state
+        console.log(`Player 1 Name: ${name1}, Player 2 Name: ${name2}`);
+        
+        if (name1 === "A" || name2 === "B") {
+            handleSnackBarOpen();
+        }
+
         setPlayer1Name(name1);
         setPlayer2Name(name2);
 
-        // Dispatch the setPlayersName action with player names
         dispatch(setPlayersName({ player1: name1, player2: name2 }));
         setShowInput(false);
         setShowGame(true);
     };
 
     if (showGame) {
-        return <Game player1={player1Name} player2={player2Name} cancel={handleCancelButton} />; // Render the game component with set names
+        return <Game player1={player1Name} player2={player2Name} cancel={handleCancelButton} />;
     }
 
-     
-        // Ensure event is defined The onChange event handler in the first snippet automatically receives the event parameter,
-        // which is essential for accessing the input value.
+    const handleInputChange1 = (event) => {
+        const input = event.target.value;
+        const capitalizedInput = input.charAt(0).toUpperCase() + input.slice(1);
+        setPlayer1(capitalizedInput);
+    };
 
-        /* Direct Function Reference (First Snippet):
+    const handleInputChange2 = (event) => {
+        const input = event.target.value;
+        const capitalizedInput = input.charAt(0).toUpperCase() + input.slice(1);
+        setPlayer2(capitalizedInput);
+    };
 
-onChange={handleInputChange}
-
-Here, handleInputChange is passed directly as the event handler function. This allows the TextField component to automatically pass 
-the event object to the function when an input change occurs.
-
-Arrow Function (Second Snippet):
-
-onChange={() => { handleInputChange(); }}
-
-This creates a new arrow function that calls handleInputChange without any parameters. 
-Since handleInputChange expects an event parameter, this will cause an error because event is not passed. */
-const handleInputChange1 = (event) => {
-        const input = event.target.value; 
-                const capitalizedInput = input.charAt(0).toUpperCase() + input.slice(1); 
-                setPlayer1(capitalizedInput);
-               };
-                const handleInputChange2 = (event) => {
-                    const input = event.target.value; 
-                            const capitalizedInput = input.charAt(0).toUpperCase() + input.slice(1); 
-                            
-                            setPlayer2(capitalizedInput); };
     return (
         <>
             <h4
@@ -98,9 +97,14 @@ const handleInputChange1 = (event) => {
                     justifyContent: "center",
                     margin: "20px",
                     fontSize: "25px",
+                    background: "-webkit-linear-gradient(red, blue, orange, pink, green, lightgreen, yellow)",
+                    // eslint-disable-next-line no-dupe-keys
                     background: "linear-gradient(red, blue, orange, pink, green, lightgreen, yellow)",
+                    WebkitBackgroundClip: "text",
                     backgroundClip: "text",
-                    WebkitTextFillColor: "transparent"
+                    WebkitTextFillColor: "transparent",
+                    textFillColor: "transparent",
+                    color: "transparent"
                 }}
             >
                 {currentText}
@@ -115,7 +119,6 @@ const handleInputChange1 = (event) => {
                     <DialogTitle>Enter Team Details</DialogTitle>
                     <DialogContent>
                         <TextField
-                            autoFocus
                             label="Your Name"
                             fullWidth
                             value={player1}
@@ -138,6 +141,22 @@ const handleInputChange1 = (event) => {
                     </DialogActions>
                 </Dialog>
             )}
+            <Snackbar
+                open={snackbar}
+                autoHideDuration={5000}
+                onClose={handleSnackBarClose}
+                message="Starting match with default values"
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                sx={{
+                    '.MuiSnackbar-root': {
+                        backgroundColor: 'grey',
+                        color: 'white',
+                        fontWeight: 'bold',
+                        fontSize: '1.5rem',
+                        zIndex: 9999,
+                    },
+                }}
+            />
         </>
     );
 }

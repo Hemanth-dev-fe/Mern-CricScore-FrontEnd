@@ -1,0 +1,35 @@
+.ActionsContainer{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    padding: 0px;
+    margin-top: 50px;
+}
+.button
+{
+    flex: 1 1 calc(33.333% - 10px); /* Adjust for 3 columns with gap */
+     /* Ensure spacing between buttons */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+   
+}
+.ActionsContainer-2
+{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    margin-top: 25px;
+}
+.button2
+{
+    flex: 1 1 calc(50% - 10px);
+    
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}

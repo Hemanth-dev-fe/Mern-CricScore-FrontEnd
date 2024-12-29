@@ -14,7 +14,8 @@ function MemoryGame()
     let initialReval=useSelector((state)=>state.memory?.initialReval)
     let message=useSelector((state)=>state.memory?.message)
     let gameStatus=useSelector((state)=>state.memory?.gameStatus)
-    let timeLimit=useSelector((state)=>state.memory?.timeLimit)
+    // let timeLimit=useSelector((state)=>state.memory?.timeLimit)
+    let timeFormate=useSelector((state)=>state.memory?.timeFormate)
     let dispatch=useDispatch();
     let timer=useRef(null);
     let hideTimer=useRef(null)
@@ -22,7 +23,7 @@ function MemoryGame()
     const setTimer=useCallback(()=>{
         hideTimer.current=setTimeout(()=>{
             dispatch(hideInitialValues())
-        },10000);
+        },15000);
         timer.current=setInterval(()=>{
             dispatch(decrementTimeLimit())
         },1000)
@@ -68,8 +69,8 @@ function MemoryGame()
             <>
             <div className="message-info">
                 
-                {gameStatus==="playing" && <p className="message">Attempts : {attempts}/{maxAttempts} | Timeleft: {timeLimit}s </p>}
-                {<p>{message}</p>}
+                {gameStatus==="playing" && <div className="message" style={{textAlign:"center",padding:"5px"}}><p>Attempts : {attempts}/{maxAttempts} </p><p>And</p><p>Timeleft: {timeFormate} </p></div>}
+                {<p style={{textAlign:"center"}}>{message}</p>}
 
             </div>
             <div className="grid">

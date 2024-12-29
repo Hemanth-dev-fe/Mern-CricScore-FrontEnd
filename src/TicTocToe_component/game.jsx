@@ -36,7 +36,7 @@ function Game({ player1, player2, cancel }) {
                     {winner ? (
                         <p className="winnermessage">Congratulations: {winner}</p>
                     ) : (
-                        <p>The Next Player Is: {xIsNext ? player1 : player2}</p>
+                        <p style={{margin:"20px",textAlign:"center"}}>The Next Player Is: {xIsNext ? player1 : player2}</p>
                     )}
                 </div>
                 <Board squares={squares} clicked={handleSquare} />
@@ -48,7 +48,7 @@ function Game({ player1, player2, cancel }) {
                     }}>Exit</button>
                 </div>
                 {winner && (<div style={{marginTop:"30px", textAlign:"center"}}>
-                    <p style={{color:"lightgreen"}}>Hello  &apos;{winner}&apos; , If You Want To Play Next Level . Please Click the Below Button </p>
+                    <p style={{color:"lightgreen",margin:"20px"}}>Hello  &apos;{winner}&apos; , If You Want To Play Next Level . Please Click the Below Button </p>
                     <Button variant="contained" color="primary" onClick={()=>{setOpen(true)}} style={{marginTop:"15px", textAlign:"center"}} >Next-Level</Button>
                     <Box display="flex" justifyContent="center" alignItems="center" >
                         <Dialog open={open} onClose={() => setOpen(false)} >
