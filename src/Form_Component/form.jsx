@@ -13,7 +13,7 @@ const LoginForm = ({ toggleForm,setAuth }) => {
     // Add your authentication logic here
     e.preventDefault();
     try{
-      const response= await axios.post("http://localhost:4500/login",{email:username,password})
+      const response= await axios.post("http://localhost:1800/login",{email:username,password})
     
       console.log("data stored:" ,response.data)
       setAuth(true)
@@ -59,7 +59,7 @@ const RegistrationForm = ({ toggleForm }) => {
   const handleRegister=async(e)=>{
     e.preventDefault();
     try{
-      await axios.post("http://localhost:4500/register",{username,email,password})
+      await axios.post("http://localhost:1800/register",{username,email,password})
     console.log("register successfully");
     setUsername("")
     setEmail("")
@@ -68,6 +68,7 @@ const RegistrationForm = ({ toggleForm }) => {
     catch(error)
     {
       console.log("error registering:", error)
+      alert("invalide credentials")
     }
   }
   const [username, setUsername] = useState('');
