@@ -97,14 +97,6 @@ function TextAnimation() {
                     justifyContent: "center",
                     margin: "20px",
                     fontSize: "25px",
-                    background: "-webkit-linear-gradient(red, blue, orange, pink, green, lightgreen, yellow)",
-                    // eslint-disable-next-line no-dupe-keys
-                    background: "linear-gradient(red, blue, orange, pink, green, lightgreen, yellow)",
-                    WebkitBackgroundClip: "text",
-                    backgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    textFillColor: "transparent",
-                    color: "transparent"
                 }}
             >
                 {currentText}
