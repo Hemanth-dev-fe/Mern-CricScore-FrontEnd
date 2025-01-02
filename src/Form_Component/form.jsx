@@ -54,16 +54,20 @@ const RegistrationForm = ({ toggleForm }) => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-        const response = await axios.post("https://mern-cricscore-backend.onrender.com/auth/register", { username, email, password });
-        console.log("register successfully", response.data);
-        setUsername("");
-        setEmail("");
-        setPassword("");
+      const response = await axios.post("https://mern-cricscore-backend.onrender.com/auth/register", {
+        name: username,
+        email: email,
+        password: password
+      });
+      console.log("register successfully", response.data);
+      setUsername("");
+      setEmail("");
+      setPassword("");
     } catch (error) {
-        console.log("error registering:", error);
-        alert("Invalid credentials");
+      console.log("error registering:", error);
+      alert("Invalid credentials");
     }
-};
+  };
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
