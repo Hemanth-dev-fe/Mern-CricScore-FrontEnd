@@ -8,25 +8,20 @@ const LoginForm = ({ toggleForm,setAuth }) => {
   const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const Navigate=useNavigate()
-  const handleLogin = async(e) => {
-    
-    // Add your authentication logic here
-    e.preventDefault();
-    try{
-      const response = await axios.post("https://mern-cricscore-backend.onrender.com/auth", { email: username, password });
-
-      console.log("data stored:" ,response.data)
-      setAuth(true)
-      Navigate("./tile")
-      setUsername("")
-      setPassword("")
-
-    }
-    catch(error){
-      console.log("error is while login :", error)
-      alert("invalid credentials")
-    }
-};
+    const handleLogin = async (e) => {
+      e.preventDefault();
+      try {
+          const response = await axios.post("https://mern-cricscore-backend.onrender.com/login", { email: username, password });
+          console.log("data stored:", response.data);
+          setAuth(true);
+          Navigate("./tile");
+          setUsername("");
+          setPassword("");
+      } catch (error) {
+          console.log("error is while login:", error);
+          alert("Invalid credentials");
+      }
+  };
 return(
   <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
     <Card sx={{width:"400px", height:"320px"}}>
@@ -56,21 +51,19 @@ LoginForm.propTypes={
   setAuth: PropTypes.func?.isRequired,
 }
 const RegistrationForm = ({ toggleForm }) => {
-  const handleRegister=async(e)=>{
+  const handleRegister = async (e) => {
     e.preventDefault();
-    try{
-      await axios.post("https://mern-cricscore-backend.onrender.com",{username,email,password})
-    console.log("register successfully");
-    setUsername("")
-    setEmail("")
-    setPassword("")
+    try {
+        const response = await axios.post("https://mern-cricscore-backend.onrender.com/register", { username, email, password });
+        console.log("register successfully", response.data);
+        setUsername("");
+        setEmail("");
+        setPassword("");
+    } catch (error) {
+        console.log("error registering:", error);
+        alert("Invalid credentials");
     }
-    catch(error)
-    {
-      console.log("error registering:", error)
-      alert("invalide credentials")
-    }
-  }
+};
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
