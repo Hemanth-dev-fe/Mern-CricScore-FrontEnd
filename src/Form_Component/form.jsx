@@ -13,8 +13,8 @@ const LoginForm = ({ toggleForm,setAuth }) => {
     // Add your authentication logic here
     e.preventDefault();
     try{
-      const response= await axios.post("https://mern-cricscore-backend.onrender.com",{email:username,password})
-    
+      const response = await axios.post("https://mern-cricscore-backend.onrender.com/auth", { email: username, password });
+
       console.log("data stored:" ,response.data)
       setAuth(true)
       Navigate("./tile")
