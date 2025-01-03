@@ -107,12 +107,18 @@ const AuthPage = ({ setAuth }) => {
   const [isLogin, setIsLogin] = useState(true);
 
   const toggleForm = () => {
+    console.log("Toggling form");
     setIsLogin(!isLogin);
+    console.log("isLogin state:", !isLogin);
   };
 
   return (
     <Container maxWidth="sm">
-      {isLogin ? <LoginForm toggleForm={toggleForm} setAuth={setAuth} /> : <RegistrationForm toggleForm={toggleForm} />}
+      {isLogin ? (
+        <LoginForm toggleForm={toggleForm} setAuth={setAuth} />
+      ) : (
+        <RegistrationForm toggleForm={toggleForm} />
+      )}
     </Container>
   );
 };
