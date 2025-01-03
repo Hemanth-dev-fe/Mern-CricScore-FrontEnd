@@ -51,6 +51,9 @@ LoginForm.propTypes={
   setAuth: PropTypes.func?.isRequired,
 }
 const RegistrationForm = ({ toggleForm }) => {
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
@@ -64,13 +67,11 @@ const RegistrationForm = ({ toggleForm }) => {
       setEmail("");
       setPassword("");
     } catch (error) {
-      console.log("error registering:", error);
+      console.log("error registering:", error.response ? error.response.data : error.message);
       alert("Invalid credentials");
     }
   };
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+
   return(
   
      <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
