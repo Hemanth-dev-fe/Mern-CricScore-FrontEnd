@@ -25,7 +25,7 @@ const LoginForm = ({ toggleForm,setAuth }) => {
 return(
   <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
     <Card sx={{width:"400px", height:"320px"}}>
-    <Typography variant="h4" align='center' sx={{marginTop:"15px"}}>Sign In</Typography>
+    <Typography variant="h4" align='center' sx={{marginTop:"15px"}}>Login</Typography>
       <CardContent>
       <TextField label="Email" variant="standard" fullWidth margin="dense"
     value={username}
