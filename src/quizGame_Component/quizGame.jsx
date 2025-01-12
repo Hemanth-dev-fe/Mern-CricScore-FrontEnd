@@ -4,8 +4,9 @@ import { Box, Button, Card, CardActions, CardContent, CardHeader, Dialog, Dialog
 import { useCallback, useEffect, useState, memo } from "react";
 import PropTypes from "prop-types";
 
+import axios from "axios"
 const QuizQuestions = memo(({ currentQuestion, handleSelectOption, handlePrevious, handleNextQuestion, openDialog, currentQuestionIndex }) => {
-
+    
     return (
         <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column">
             <Dialog open={openDialog}>
@@ -143,7 +144,8 @@ function Quiz() {
     const [openDialog, setOpenDialog] = useState(true);
     const dispatch = useDispatch();
     const currentQuestion = questions[currentQuestionIndex];
-
+    const Email=useSelector((state)=>state.userAuth.email)
+    const userName=useSelector((state)=>state.userAuth.userName)
     useEffect(() => {
         if (showScore || showAnswers) {
             setOpenDialog(false);
@@ -177,6 +179,31 @@ function Quiz() {
         dispatch(showAnswer());
     }, [dispatch]);
 
+    //backend data
+
+    const handleSubmitScore = useCallback(async () => {
+        try {
+            const email = Email; // Get the email from Redux state
+            console.log("Email:", email); // Log the email to check its value
+            if (!email) {
+                console.error("Email is required");
+                return;
+            }
+            const response = await axios.post("http://localhost:3000/quiz/quiz-scoreposting", { email,username:userName, score });
+            console.log(response.data);
+        } catch (error) {
+            console.error("Error submitting quiz score:", error);
+        }
+    }, [score, Email,userName]);
+
+    useEffect(() => {
+        if (showScore) {
+            handleSubmitScore();
+        }
+    }, [showScore, handleSubmitScore]);
+
+
+    //done
     if (showAnswers) return <ShowQuizAnswers questions={questions}
     handleReset={handleReset} />;
 

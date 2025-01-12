@@ -1,5 +1,5 @@
-import {Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Snackbar, TextField, Typography} from "@mui/material"
-import { startMatch } from "../reducers/ScoreCardSlice_cricket"
+import {Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Snackbar, TextField} from "@mui/material"
+import { startMatch } from "../reducers/cricScoreReducers"
 import "./startMatchConfiguration.css"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -160,12 +160,6 @@ const dispatch=useDispatch()
               onClick={handleMatchDetailsDialog}
               >
                 Start A New Match
-              </Button>
-              <Typography variant="body1">
-                OR
-              </Typography>
-              <Button variant="contained" color="primary" sx={{width:"100%",mt:2}} >
-                sample score counter
               </Button>
         </Box>
         </div>

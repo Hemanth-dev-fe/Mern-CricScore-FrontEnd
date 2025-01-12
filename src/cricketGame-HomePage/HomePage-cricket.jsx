@@ -1,8 +1,8 @@
-import DisplayButtonAndInput from "../cricketGame-Components/actions-creating buttons and display input"
-import MainScoreBoardDisplay from "../cricketGame-Components/MainScoreBoardDisplay"
+import ActionForButton from "../cricketGame-Components/actionforscorebutton"
+import MainScoreBoardDisplay from "../cricketGame-Components/mainScoreBoardDisplay"
 import MatchDetails from "../cricketGame-Components/matchDetails"
-import ScoreBoard from "../cricketGame-Components/ScoreBoardDiag"
 import StartMatchConfiguration from "../cricketGame-Components/startMatchConfiguration"
+
 
 function HomePage()
 {
@@ -14,8 +14,7 @@ function HomePage()
             <StartMatchConfiguration/>
             <MatchDetails/>
             <MainScoreBoardDisplay/>
-            <DisplayButtonAndInput/>
-            <ScoreBoard/>
+            <ActionForButton/>
         </div>
         
      
