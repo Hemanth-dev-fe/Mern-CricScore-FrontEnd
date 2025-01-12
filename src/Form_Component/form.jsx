@@ -18,7 +18,7 @@ const LoginForm = ({ toggleForm,setAuth,isUserLogin,handleAdminUser,handleUserLo
     const handleLogin = async (e) => {
       e.preventDefault();
       try {
-          const response = await axios.post("https://mern-cricscore-backend.onrender.com/auth/login", { email, password });
+          const response = await axios.post("https://mern-cricscorebackend.onrender.com/auth/login", { email, password });
           console.log("data stored:", response.data);
           setAuth(true);
           Navigate("./tile");
@@ -95,7 +95,7 @@ const RegistrationForm = ({ toggleForm }) => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("https://mern-cricscore-backend.onrender.com/auth/register", {
+      const response = await axios.post("https://mern-cricscorebackend.onrender.com/auth/register", {
         name: username,
         email: email,
         password: password
