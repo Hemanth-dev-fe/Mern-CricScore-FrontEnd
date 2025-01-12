@@ -189,7 +189,7 @@ function Quiz() {
                 console.error("Email is required");
                 return;
             }
-            const response = await axios.post("http://localhost:3000/quiz/quiz-scoreposting", { email,username:userName, score });
+            const response = await axios.post("https://mern-cricscorebackend.onrender.com/quiz/quiz-scoreposting", { email,username:userName, score });
             console.log(response.data);
         } catch (error) {
             console.error("Error submitting quiz score:", error);
