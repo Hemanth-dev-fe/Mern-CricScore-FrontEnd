@@ -1,5 +1,5 @@
 import ActionForButton from "../cricketGame-Components/actionforscorebutton"
-import MainScoreBoardDisplay from '../cricketGame-Components/mainScoreBoardDisplay.jsx';
+import MainScoreBoardDisplay from '../cricketGame-Components/mainScoreBoardDisplay1.jsx';
 import MatchDetails from "../cricketGame-Components/matchDetails"
 import StartMatchConfiguration from "../cricketGame-Components/startMatchConfiguration"
 
