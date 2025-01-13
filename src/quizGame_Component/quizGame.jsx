@@ -146,6 +146,7 @@ function Quiz() {
     const currentQuestion = questions[currentQuestionIndex];
     const Email=useSelector((state)=>state.userAuth.email)
     const userName=useSelector((state)=>state.userAuth.userName)
+    
     useEffect(() => {
         if (showScore || showAnswers) {
             setOpenDialog(false);
@@ -183,19 +184,20 @@ function Quiz() {
 
     const handleSubmitScore = useCallback(async () => {
         try {
-            const email = Email; // Get the email from Redux state
+            const email = Email;
+            const name = userName; // Ensure you are getting the name correctly
             console.log("Email:", email); // Log the email to check its value
-            if (!email) {
-                console.error("Email is required");
+            console.log("Name:", name); // Log the name to check its value
+            if (!email || !name) {
+                console.error("Email and name are required");
                 return;
             }
-            const response = await axios.post("https://mern-cricscorebackend.onrender.com/quiz/quiz-scoreposting", { email,username:userName, score });
+            const response = await axios.post("https://mern-cricscorebackend.onrender.com/quiz/quiz/quiz-scoreposting", { name, email, score }); // Change username to name
             console.log(response.data);
         } catch (error) {
             console.error("Error submitting quiz score:", error);
         }
-    }, [score, Email,userName]);
-
+    }, [score, Email, userName]);
     useEffect(() => {
         if (showScore) {
             handleSubmitScore();

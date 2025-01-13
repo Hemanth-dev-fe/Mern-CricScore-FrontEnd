@@ -27,6 +27,7 @@ function QuizTable()
                                 <TableCell>UserName</TableCell>
                                 <TableCell>E-Mail</TableCell>
                                 <TableCell>Score</TableCell>
+                                <TableCell>Date</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -36,9 +37,10 @@ function QuizTable()
                                 {
                                     quizdata.map((quizdata1,i)=>{
                                         return <TableRow key={i}>
-                                                 <TableCell>{quizdata1.username}</TableCell>
+                                                 <TableCell>{quizdata1.name}</TableCell>
                                                  <TableCell>{quizdata1.email}</TableCell>
                                                  <TableCell>{quizdata1.score}</TableCell>
+                                                 <TableCell>{quizdata1.date}</TableCell>
                                         </TableRow>
                                     })
                                 }

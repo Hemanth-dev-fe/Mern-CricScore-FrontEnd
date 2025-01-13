@@ -13,23 +13,29 @@ const LoginForm = ({ toggleForm,setAuth,isUserLogin,handleAdminUser,handleUserLo
   //   const [password, setPassword] = useState('');
   const email=useSelector((state)=>state.userAuth.email)
   const password=useSelector((state)=>state.userAuth.password)
+  const name=useSelector((state)=>state.userAuth.userName)
+
     
     const Navigate=useNavigate()
     const handleLogin = async (e) => {
       e.preventDefault();
       try {
-          const response = await axios.post("https://mern-cricscorebackend.onrender.com/auth/login", { email, password });
-          console.log("data stored:", response.data);
-          setAuth(true);
-          Navigate("./tile");
-          console.log("Email after login:", email); // Log the email to check its value
-          dispatch(setEmail(email));
-          dispatch(setPassword(""));
+        const response = await axios.post("https://mern-cricscorebackend.onrender.com/auth/login", { name,email, password });
+        console.log("data stored:", response.data);
+        setAuth(true);
+        Navigate("./tile");
+        console.log("Email after login:", email); // Log the email to check its value
+      console.log("Name after login:", name);  // Log the email to check its value
+        dispatch(setEmail(email));
+        dispatch(setPassword(""));
+        dispatch(setUserName(name))
+      
+         // Set the username from the response data
       } catch (error) {
-          console.log("error is while login:", error);
-          alert("Invalid credentials");
+        console.log("error is while login:", error);
+        alert("Invalid credentials");
       }
-  };
+    };
 return(
   <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
     <Card sx={{width:"340px", height:"410px"}}>
@@ -101,9 +107,10 @@ const RegistrationForm = ({ toggleForm }) => {
         password: password
       });
       console.log("register successfully", response.data);
-      dispatch(setUserName(""))
+      dispatch(setUserName(username))
     dispatch(setEmail(""))
     dispatch(setPassword(""))
+    setUserName("")
     } catch (error) {
       console.log("error registering:",  error.message);
       alert("Invalid credentials");
