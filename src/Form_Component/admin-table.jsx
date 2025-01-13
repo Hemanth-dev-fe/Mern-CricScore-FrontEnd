@@ -6,7 +6,7 @@ function QuizTable()
 {
     const [quizdata,setQuizData]=useState([])
     useEffect(()=>{
-        axios.get("http://localhost:3000/quiz/quiz-getData")
+        axios.get("https://mern-cricscorebackend.onrender.com/quiz/quiz-getData")
         .then(response => {
             console.log('Server response:', response.data); // Log the response data
             setQuizData(response.data);
