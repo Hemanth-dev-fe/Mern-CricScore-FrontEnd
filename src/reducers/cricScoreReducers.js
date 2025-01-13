@@ -54,9 +54,11 @@ const calculateWinner = (state) => {
   } else if (teamAScore < teamBScore) {
     const runDifference = teamBScore - teamAScore;
     const runWord = runDifference === 1 ? "run" : "runs";
-    const oversLeft = state.totalOvers - state.innings[1].completedOvers;
-    const oversLeftWord = oversLeft === 1 ? "over" : "overs";
-    state.winnerMessage = `${state.teamDetails[1].name} won by ${runDifference} ${runWord} and ${oversLeft} ${oversLeftWord} left.`;
+    // const oversLeft = state.totalOvers - state.innings[1].completedOvers;
+    // const oversLeftWord = oversLeft === 1 ? "over" : "overs";
+    state.winnerMessage = `${state.teamDetails[1].name} won by ${runDifference} ${runWord}  `;
+    // and ${oversLeft} ${oversLeftWord} left.
+   
   } else {
     state.winnerMessage = "Match Tied";
   }
