@@ -98,8 +98,35 @@ const RegistrationForm = ({ toggleForm }) => {
   const username=useSelector((state)=>state.userAuth.userName)
   const email=useSelector((state)=>state.userAuth.email)
   const password=useSelector((state)=>state.userAuth.password)
+  const emailVerify=/^[a-z]+@+[a-z]+\.+[a-z]{2,}$/
+  const passwordVerify=/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[~!@#$%^&*?`|/])[a-zA-Z0-9~!@#$%^&*?`|/]{8,}$/
+  const [emailError,setEmailError]=useState(false)
+  const [passwordError,setPasswordError]=useState(false)
+  const [error,setError]=useState(false)
+  
   const handleRegister = async (e) => {
     e.preventDefault();
+    if(!emailVerify.test(email))
+      {
+         setEmailError(true)
+         setError(true)
+      }
+      else
+      {
+        setEmailError(false)
+        
+      }
+
+      if(!passwordVerify.test(password))
+      {
+           setPasswordError(true)
+           setError(true)
+      }
+      else
+      {
+        setPasswordError(false)
+       
+      }
     try {
       const response = await axios.post("https://mern-cricscorebackend.onrender.com/auth/register", {
         name: username,
@@ -113,14 +140,14 @@ const RegistrationForm = ({ toggleForm }) => {
     setUserName("")
     } catch (error) {
       console.log("error registering:",  error.message);
-      alert("Invalid credentials");
+      // alert("Invalid credentials");
     }
   };
 
   return(
   
      <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
-      <Card sx={{width:"340px", height:"380px"}}>
+      <Card sx={{width:"340px", height:error?"420px":"360px"}}>
           <Typography variant="h4" align='center' sx={{marginTop:"15px"}}>Sign Up</Typography>
         <CardContent>
         <TextField label="Name" variant="standard" fullWidth margin="dense"value={username}
@@ -128,9 +155,11 @@ const RegistrationForm = ({ toggleForm }) => {
         <TextField label="Email" variant="standard" fullWidth margin="dense"
     value={email}
     onChange={(e) => dispatch(setEmail(e.target.value))} />
+    {emailError && error && <p style={{color:"red"}}>invalid email</p>}
     <TextField label="Password" type="password" variant="standard" fullWidth margin="dense" 
     value={password}
     onChange={(e) => dispatch(setPassword(e.target.value))}/>
+    {passwordError  && error && <p style={{color:"red"}}>password should be one uppercase,lowercase and special character.</p>}
         </CardContent>
         <CardActions>
         <Button variant="contained" color="primary" fullWidth onClick={handleRegister}>Sign Up</Button>

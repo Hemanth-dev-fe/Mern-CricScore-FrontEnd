@@ -6,6 +6,19 @@ import MemoryReducer from "../reducers/memoryGameReducer"
 import quizCardSlice from "../reducers/quizGameReducer"
 import cricScoreSlice from "../reducers/cricScoreReducers"
 import UserAuthSlice from "../reducers/userAuthloginandlogoutcredentials"
+
+// import React from "react"
+
+
+// const ThemeReducer=React.lazy(()=>import("../reducers/ThemeSlice"))
+// const gameReducer=React.lazy(()=>import("../reducers/TicTocToereducer"))
+// const TextSlice=React.lazy(()=>import("../reducers/textanimation_tictoctoe_reducer"))
+// const MemoryReducer=React.lazy(()=>import("../reducers/memoryGameReducer"))
+// const quizCardSlice=React.lazy(()=>import("../reducers/quizGameReducer"))
+// const cricScoreSlice=React.lazy(()=>import("../reducers/cricScoreReducers"))
+// const UserAuthSlice=React.lazy(()=>import("../reducers/userAuthloginandlogoutcredentials"))
+//react components only use lazy
+
 const store=configureStore(
     {
         reducer:{
