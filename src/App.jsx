@@ -51,7 +51,7 @@ function App() {
                             <Route path="/quiz" element={isAuthenticated ? <Quiz /> : <Navigate to="/" />} />
                             <Route path="/memory" element={isAuthenticated ? <TextAnimation /> : <Navigate to="/" />} />
                             <Route path="/cricket" element={isAuthenticated ? <HomePage /> : <Navigate to="/" />} />
-                            <Route path="/Admin" element={isAuthenticated ? <QuizTable /> : <Navigate to="/" />} />
+                            <Route path="/Admin" element={<QuizTable /> } />
                         </Routes>
                         </Suspense>
                     </Router>
