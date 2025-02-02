@@ -144,8 +144,8 @@ function Quiz() {
     const [openDialog, setOpenDialog] = useState(true);
     const dispatch = useDispatch();
     const currentQuestion = questions[currentQuestionIndex];
-    const Email=useSelector((state)=>state.userAuth.email)
-    const userName=useSelector((state)=>state.userAuth.userName)
+    const Email=useSelector((state)=>state.UserAuthLogin.email)
+    const userName=useSelector((state)=>state.UserAuthLogin.userName)
     
     useEffect(() => {
         if (showScore || showAnswers) {
@@ -192,7 +192,7 @@ function Quiz() {
                 console.error("Email and name are required");
                 return;
             }
-            const response = await axios.post("https://mern-cricscorebackend.onrender.com/quiz/quiz/quiz-scoreposting", { name, email, score }); // Change username to name
+            const response = await axios.post("https://mern-cricscorebackend.onrender.com/quiz/quiz/quiz-scoreposting", { email, name, score }); // Change username to name
             console.log(response.data);
         } catch (error) {
             console.error("Error submitting quiz score:", error);
