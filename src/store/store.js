@@ -5,7 +5,8 @@ import TextSlice from "../reducers/textanimation_tictoctoe_reducer"
 import MemoryReducer from "../reducers/memoryGameReducer"
 import quizCardSlice from "../reducers/quizGameReducer"
 import cricScoreSlice from "../reducers/cricScoreReducers"
-import UserAuthSlice from "../reducers/userAuthloginandlogoutcredentials"
+import UserAuthRegisterSlice from "../reducers/userRegister"
+import UserAuthLogin from "../reducers/userLogin"
 
 // import React from "react"
 
@@ -22,7 +23,8 @@ import UserAuthSlice from "../reducers/userAuthloginandlogoutcredentials"
 const store=configureStore(
     {
         reducer:{
-            userAuth:UserAuthSlice,
+            UserAuthLogin:UserAuthLogin,
+            UserAuthRegister:UserAuthRegisterSlice,
             Theme:ThemeReducer,
             game:gameReducer,
             TextAnimation:TextSlice,
