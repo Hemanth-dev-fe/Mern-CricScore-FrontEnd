@@ -21,7 +21,7 @@ const LoginForm = ({ toggleForm,setAuth,isUserLogin,handleAdminUser,handleUserLo
       e.preventDefault();
       try {
           // Send the request to the backend
-          const response = await axios.post("http://localhost:3000/auth/login", { name, email, password });
+          const response = await axios.post("https://mern-cricscorebackend.onrender.com/auth/login", { name, email, password });
           console.log("API Response Data:", response.data);
           // Log the full response data
           console.log("data stored:", response.data);
@@ -148,7 +148,7 @@ const RegistrationForm = ({ toggleForm }) => {
         return; 
          // Prevent registration if there are validation errors
       }
-      const emailResponse=await axios.get(`http://localhost:3000/auth/check-email?email=${email}`)
+      const emailResponse=await axios.get(`https://mern-cricscorebackend.onrender.com/auth/check-email?email=${email}`)
 
         if(emailResponse.data.exist)
         {
