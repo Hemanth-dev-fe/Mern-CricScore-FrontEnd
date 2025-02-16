@@ -14,6 +14,7 @@ const LoginForm = ({ toggleForm,setAuth,isUserLogin,handleAdminUser,handleUserLo
   const email=useSelector((state)=>state.UserAuthLogin.email)
   const password=useSelector((state)=>state.UserAuthLogin.password)
   const name=useSelector((state)=>state.UserAuthLogin.userName)
+  // const [token,setToken]=useState("")
 
     
     const Navigate=useNavigate()
@@ -40,12 +41,45 @@ const LoginForm = ({ toggleForm,setAuth,isUserLogin,handleAdminUser,handleUserLo
           // Log the response email and name
           console.log("Email after login:", response.data.email);
           console.log("Name after login:", response.data.name);
+
+          //the below one jwt for frontend
+
+          /* const data=response.data
+          localStorage.setItem("token",data.token)// Save token to localStorage
+          setToken(data.token) */
+          //above is to save the token in local storage
+
+
+          //if login success then protect 
+
+          // AccessProtecting()
       } catch (error) {
           // Log any errors that occur
           console.log("error is while login:", error);
           alert("Invalid credentials");
       }
   };
+
+  //protecting the token 
+
+  /* const AccessProtecting=async()=>{
+    const storedtoken=localStorage.getItem("token")
+    try{
+      axios.get("http://localhost:3000/auth/protected",{
+        headers:{
+          'Authorization': `Bearer ${storedtoken}`
+        }
+        
+      })
+    
+    }
+    catch (err) {
+      console.error("Failed to access protected data:", err);
+  
+  }
+
+
+  } */
 return(
   <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
     <Card sx={{width:"340px", height:"410px"}}>

@@ -1,0 +1,59 @@
+1. why we are using /*    /index.html   200  and separtly creating _redirect page?
+
+Without the _redirects file, users will get a 404 error when trying to refresh or directly access routes in your React app. 
+The _redirects file ensures that all routes are properly handled by the client-side (React) routing instead of the server.
+
+
+How to Implement It?
+To implement this rule in a Netlify-hosted application:
+
+Create a _redirects file:
+
+In your project, inside the public (or dist) folder, create a file named _redirects.
+Add the rule:
+
+Open the _redirects file and add the following line:
+
+/*    /index.html   200
+Deploy the application:
+
+Once you’ve added the _redirects file, push your changes and deploy the application on Netlify. Netlify will automatically recognize the _redirects file and apply the routing rule.
+Conclusion
+The rule /* /index.html 200 ensures that, in a Single Page Application (SPA), all routes are handled by the client-side router, and the server always responds with the index.html file. This is essential for avoiding 404 errors and allowing seamless navigation between different pages of the SPA, even when refreshing or directly accessing a route.
+
+ The client-side code then determines the content to display based on the current route.
+
+
+
+
+2.  When I log in to the admin table, the data is shown, but when I refresh the site, it doesn't show the data. Here, we can see the page not found info. Why is it happening?
+
+
+Browser Behavior: The browser sends a request to the server asking for the URL you're currently on (e.g., /admin).
+
+Server Behavior: The server then looks for a physical file or folder called /admin on the server, which doesn’t exist because your app is a SPA. It only has index.html.
+
+404 Error: Since the server doesn’t find any file at /admin, it returns a "404 Not Found" error because, by default, 
+it doesn't know that your app's routing is handled on the client side. 
+
+
+It only has index.html   why?
+
+The server is configured to always serve index.html for any unknown route.
+ This is how it knows to send the index.html file even when you request /admin or any other route.
+This configuration tells the server: 
+“If you don’t find a matching file for the requested URL, just serve the index.html file, 
+and let the client-side JavaScript handle the routing.”
+
+
+
+
+
+
+
+
+
+
+
+
+
